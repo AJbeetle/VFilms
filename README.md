@@ -1,2 +1,2 @@
 # VFilms
-A branding agency website.
+A Creative Agency Website. Servicing Filming, Braning and Art.
