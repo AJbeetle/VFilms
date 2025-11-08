@@ -1,6 +1,6 @@
 // import chakraPattern from "../assets/chakraPattern.svg";
 
-export const HomePage = () => {
+export default function HomePage(){
   return (
     <div className="p-24 flex items-center justify-between w-full h-full">
         <div className="w-[40%] relative flex justify-center group">
