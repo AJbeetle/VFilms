@@ -7,3 +7,32 @@ body{
   background-repeat:round;
   background-size:contain;
 }
+
+@layer base {
+  /* Hide scrollbar for all browsers */
+
+  /* Firefox */
+  * {
+    scrollbar-width: none; /* hides scrollbar but keeps scrollable */
+  }
+
+  /* Webkit (Chrome, Safari, Edge, Opera) */
+  *::-webkit-scrollbar {
+    display: none; /* hides scrollbar but keeps scrollable */
+  }
+
+  /* Optional: disable background or track styles since scrollbar is hidden */
+  *::-webkit-scrollbar-track,
+  *::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  /* Dark mode (no need to define scrollbar color if hidden, but keeping structure clean) */
+  .dark * {
+    scrollbar-width: none;
+  }
+
+  .dark *::-webkit-scrollbar {
+    display: none;
+  }
+}
