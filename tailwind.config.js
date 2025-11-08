@@ -16,7 +16,8 @@ export default {
         mediumText : ['"Halant"']
       },
       colors: {
-        primary : "#f25d2c"
+        primary : "#f25d2c",
+        dark:"#0f3357"
       }
     }
   },
