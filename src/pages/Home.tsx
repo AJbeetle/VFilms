@@ -5,7 +5,7 @@ export default function HomePage(){
     <div className="p-24 flex items-center justify-between w-full h-full">
         <div className="w-[40%] relative flex justify-center group">
             <div className="relative">
-                <img src={"/chakraPattern.svg"} alt="chakra" className="group-hover:animate-spin-slow-reverse" />
+                <img src={"/chakraPattern.svg"} alt="chakra" className="animate-spin-slow-reverse" />
             </div>
             <div className="absolute top-1/3 flex items-center">
                 <img src={"/logo.svg"} className="w-42 h-42"></img>
