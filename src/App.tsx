@@ -6,9 +6,10 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MainLayout } from './pages/MainLayout';
 
 const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/Home"));
+const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Home"));
 const Services = lazy(() => import("./pages/Home"));
+const Portfolio = lazy(()=> import("./pages/Portfolio")); 
 
 const SuspenseLayout = () => (
   <Suspense fallback={<ImSpinner2 />}>
@@ -27,6 +28,7 @@ function App() {
             <Route path="/AboutUs" element={<About/>}/>
             <Route path="/Contact" element={<Contact/>}/>
             <Route path="/Services" element={<Services/>}/>
+            <Route path="/Portfolio" element={<Portfolio/>}></Route>
           </Route>
         </Route>
       </Routes>
