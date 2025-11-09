@@ -1,8 +1,6 @@
-// import chakraPattern from "../assets/chakraPattern.svg";
-
-export default function HomePage(){
+export default function HomePage(){   
   return (
-    <div className="p-24 flex items-center justify-between w-full h-full">
+    <div className="w-screen h-screen p-24 flex items-center justify-between">
         <div className="w-[40%] relative flex justify-center group">
             <div className="relative">
                 <img src={"/chakraPattern.svg"} alt="chakra" className="animate-spin-slow-reverse" />
