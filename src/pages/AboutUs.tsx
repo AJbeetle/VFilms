@@ -20,7 +20,7 @@ export function AboutUs(){
                 </div> 
                 
                 <div className="relative w-full h-full">
-                    <img src="/LogosCirc.png" className="w-[40rem] absolute bottom-0 left-[9%]"/>
+                    <img src="/LogosCirc.svg" className="w-[40rem] absolute bottom-0 left-[9%]"/>
                     <img src="/Hill.svg" className="w-[25rem] absolute bottom-0 left-[25%]"/>
                 </div>
             </div>
