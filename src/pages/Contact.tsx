@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { z } from 'zod';
 
 // Zod schema for form validation
@@ -72,7 +72,7 @@ export default function ContactPage() {
         
         // console.log("State of errors ", )
         // console.log(errors);
-        setErrors(err => fieldErrors);
+        setErrors(er => er=fieldErrors);
         return;
       }
     }
@@ -209,7 +209,7 @@ export default function ContactPage() {
 
       {/* Toast Notification */}
       {toast && (
-        <div className="fixed top-4 right-4 z-50 animate-slide-in">
+        <div className="fixed bottom-4 right-4 z-50 animate-slide-in">
           <div
             className={`px-6 py-4 rounded-lg shadow-lg flex items-center gap-3 ${
               toast.type === 'success'
