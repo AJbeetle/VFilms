@@ -1,9 +1,7 @@
 export default function PortfolioPage(){
     return(
-        <div className="w-screen h-screen flex justify-center items-center">
-            <div className="">
-                <img src="portfolio/CamStanding.svg" className=" w-[12rem] absolute bottom-[10%] left-[5%]"/>
-            </div>
+        <div className="w-screen h-screen flex justify-center items-center relative overflow-hidden">
+            <img src="portfolio/CamStanding.svg" className=" w-[12rem] absolute bottom-[10%] left-[5%]"/>
             <div className="flex flex-col gap-8 items-center justify-center w-full">
                 <div className="flex flex-col gap-2 items-center justify-center">
                     <p className="font-mediumText text-3xl w-fit">The Highlight Reel</p>
@@ -26,9 +24,7 @@ export default function PortfolioPage(){
                     </div>
                 </div>
             </div>
-            <div>
-                <img src="portfolio/rightCirc.svg" className="absolute bottom-0 right-0"/>
-            </div>
+            <img src="FullHollowCirc.png" className="absolute -bottom-[35%] -right-[30%] w-[40rem]"/>
         </div>
     )
 }
