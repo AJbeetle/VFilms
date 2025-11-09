@@ -1,6 +1,5 @@
 import {useState, useRef, useEffect} from "react";
 import HomePage from "./Home";
-import AboutPage from "./About";
 import ServicesPage from "./Services";
 import PortfolioPage from "./Portfolio";
 import ContactPage from "./Contact";
