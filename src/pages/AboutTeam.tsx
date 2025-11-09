@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-
 export function AboutTeam(){
     const navigate = useNavigate();
     return(
-        <div className="flex w-full h-full justify-end">
+        <div className="flex w-screen h-screen justify-end">
             <div className="relative w-[30%] flex-col">
                 <img src="/pinPaper.svg" className="w-[30rem] absolute -right-[15%] top-0"></img>
                 <img src="/IGate.svg" className="w-[20rem] absolute left-0 bottom-10"></img>
