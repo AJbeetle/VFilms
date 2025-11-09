@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { MdMailOutline } from "react-icons/md";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface NavBarPropsType{
     className?:string;
@@ -42,7 +42,6 @@ const navItem : navItemType[] = [
 ]
 export const NavBar = (props : NavBarPropsType ) => {
     const [navState, setNavState] = useState<boolean>(true);
-    const {pathname} = useLocation();
     const navigate = useNavigate();
 
     return (
