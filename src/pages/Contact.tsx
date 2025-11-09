@@ -72,7 +72,7 @@ export default function ContactPage() {
         
         // console.log("State of errors ", )
         // console.log(errors);
-        setErrors(er => er=fieldErrors);
+        setErrors(fieldErrors);
         return;
       }
     }
