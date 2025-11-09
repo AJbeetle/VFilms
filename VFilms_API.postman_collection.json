@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "ff27a55d-c846-419d-a332-b0aac013ce84",
+		"name": "VFilms_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33293750"
+	},
+	"item": [
+		{
+			"name": "Checking form submission",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test user\",\r\n  \"email\": \"testuser@gmail.com\",\r\n  \"phone\": \"908765498\",\r\n  \"message\": \"This is a message\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vernanbackend.ezlab.in/api/contact-us/",
+					"protocol": "https",
+					"host": [
+						"vernanbackend",
+						"ezlab",
+						"in"
+					],
+					"path": [
+						"api",
+						"contact-us",
+						""
+					]
+				},
+				"description": "If All Values Valid -> request succeffuly results 200"
+			},
+			"response": []
+		},
+		{
+			"name": "Check for invalid email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test user\",\r\n  \"email\": \"testuser@gmailcheck\",\r\n  \"phone\": \"908765498\",\r\n  \"message\": \"This is a message\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vernanbackend.ezlab.in/api/contact-us/",
+					"protocol": "https",
+					"host": [
+						"vernanbackend",
+						"ezlab",
+						"in"
+					],
+					"path": [
+						"api",
+						"contact-us",
+						""
+					]
+				},
+				"description": "If email is invalid -> request responds with 400\n\n{ \"email\": \\[ \"Enter a valid email address.\" \\]}"
+			},
+			"response": []
+		},
+		{
+			"name": "check for invalid phoneNumber",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test user\",\r\n  \"email\": \"testuser@gmailcheck.com\",\r\n  \"phone\": \"908768\",\r\n  \"message\": \"This is a message\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vernanbackend.ezlab.in/api/contact-us/",
+					"protocol": "https",
+					"host": [
+						"vernanbackend",
+						"ezlab",
+						"in"
+					],
+					"path": [
+						"api",
+						"contact-us",
+						""
+					]
+				},
+				"description": "If phone is invalid -> request responds with 400\n\n{ \"email\": \\[ \"Enter a valid email address.\" \\]}"
+			},
+			"response": []
+		},
+		{
+			"name": "check for no name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"\",\r\n  \"email\": \"testuser@gmailcheck.com\",\r\n  \"phone\": \"9087658r no\",\r\n  \"message\": \"This is a message\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vernanbackend.ezlab.in/api/contact-us/",
+					"protocol": "https",
+					"host": [
+						"vernanbackend",
+						"ezlab",
+						"in"
+					],
+					"path": [
+						"api",
+						"contact-us",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check for no message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \"name\": \"Test user\",  \"email\": \"testuser@gmailcheck.com\",  \"phone\": \"9087658\",  \"message\": \"\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://vernanbackend.ezlab.in/api/contact-us/",
+					"protocol": "https",
+					"host": [
+						"vernanbackend",
+						"ezlab",
+						"in"
+					],
+					"path": [
+						"api",
+						"contact-us",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
