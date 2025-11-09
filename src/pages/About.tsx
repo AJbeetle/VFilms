@@ -2,7 +2,7 @@ import {AboutTeam} from "./AboutTeam"
 import { AboutUs } from "./AboutUs"
 import {useRef, useState,useEffect} from "react";
 
-export default function About(){
+export default function AboutPage(){
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
