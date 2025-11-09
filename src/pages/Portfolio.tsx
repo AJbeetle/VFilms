@@ -1,7 +1,7 @@
-export default function Portfolio(){
+export default function PortfolioPage(){
     return(
-        <div className="w-full h-full flex justify-center items-center">
-            <div>
+        <div className="w-screen h-screen flex justify-center items-center">
+            <div className="">
                 <img src="portfolio/CamStanding.svg" className=" w-[12rem] absolute bottom-[10%] left-[5%]"/>
             </div>
             <div className="flex flex-col gap-8 items-center justify-center w-full">
