@@ -1,22 +1,22 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import HomePage from "./Home";
-import AboutPage from "./About"; 
 import ServicesPage from "./Services";
 import PortfolioPage from "./Portfolio";
 import ContactPage from "./Contact";
 import { AboutTeam } from "./AboutTeam";
 import { AboutUs } from "./AboutUs";
-import gsap from "gsap"; // Keep these imports here
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Define the pages list
+// Define the pages list with their routes
 const PAGES = [
-    HomePage,
-    AboutTeam,
-    AboutUs,
-    ServicesPage,
-    PortfolioPage,
-    ContactPage
+    { component: HomePage, route: "/Home" },
+    { component: AboutTeam, route: "/AboutTeam" },
+    { component: AboutUs, route: "/AboutUs" },
+    { component: ServicesPage, route: "/Services" },
+    { component: PortfolioPage, route: "/Portfolio" },
+    { component: ContactPage, route: "/Contact" }
 ];
 
 // Register ScrollTrigger globally once
@@ -25,11 +25,11 @@ if (typeof window !== 'undefined') {
 }
 
 export default function OneHome() {
-    const containerRef = useRef(null);
+    const containerRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
-    
-    // 🛑 REMOVE: currentPage and related logic are no longer needed 
-    // to drive the scroll position, as native scrolling will handle it.
+    const navigate = useNavigate();
+    const location = useLocation();
+    const isNavigatingRef = useRef(false);
     
     useEffect(() => {
         // Check if mobile on mount and resize
@@ -43,13 +43,91 @@ export default function OneHome() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // 🛑 REMOVE: The useEffects for handleWheel and container.scrollTo are removed 
-    // so the user's scroll action drives the viewport movement.
+    // Handle route-based scrolling (when user navigates directly or uses browser back/forward)
+    useEffect(() => {
+        if (!containerRef.current || isMobile) return;
+
+        const currentPageIndex = PAGES.findIndex(page => page.route === location.pathname);
+        if (currentPageIndex === -1) return;
+
+        const container = containerRef.current;
+        const targetScroll = currentPageIndex * window.innerWidth;
+
+        // Check if we need to scroll
+        if (Math.abs(container.scrollLeft - targetScroll) > 10) {
+            isNavigatingRef.current = true;
+            container.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+
+            // Reset the flag after scrolling completes
+            setTimeout(() => {
+                isNavigatingRef.current = false;
+            }, 1000);
+        }
+    }, [location.pathname, isMobile]);
+
+    // Set up ScrollTriggers for route updates based on scroll position
+    useEffect(() => {
+        if (!containerRef.current || isMobile) return;
+
+        const container = containerRef.current;
+        
+        // Clean up existing ScrollTriggers to avoid duplicates
+        // ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+        ScrollTrigger.getAll().forEach(trigger => {
+
+            if (trigger.vars.id?.startsWith('route-')) {
+
+                trigger.kill();
+
+            }
+
+        });
+
+        // Create ScrollTriggers for each page section
+        PAGES.forEach((page, index) => {
+            const section = container.querySelector(`.page-section-${index}`);
+            if (!section) return;
+
+            ScrollTrigger.create({
+                trigger: section,
+                scroller: container,
+                horizontal: true,
+                start: "left center", // When left edge of section hits center of viewport
+                end: "right center",   // When right edge of section hits center of viewport
+                onEnter: () => {
+                    // Update route when scrolling forward into this section
+                    if (!isNavigatingRef.current && location.pathname !== page.route) {
+                        navigate(page.route, { replace: true });
+                    }
+                },
+                onEnterBack: () => {
+                    // Update route when scrolling backward into this section
+                    if (!isNavigatingRef.current && location.pathname !== page.route) {
+                        navigate(page.route, { replace: true });
+                    }
+                },
+                id: `route-${index}`, // Add unique ID for selective cleanup
+                // markers: true, // Uncomment for debugging
+            });
+        });
+
+        return () => {
+            // Cleanup on unmount or when dependencies change
+            // ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            ScrollTrigger.getAll().forEach(trigger => {
+                if (trigger.vars.id?.startsWith('route-')) {
+                    trigger.kill();
+                }
+            });
+        };
+    }, [isMobile, navigate, location.pathname]);
 
     return (
         <div 
             ref={containerRef}
-            // 💡 IMPORTANT: Added a stable class for the Scroller property in ScrollTrigger
             className={`
                 main-horizontal-scroller 
                 ${isMobile 
@@ -58,21 +136,21 @@ export default function OneHome() {
                 }
                 scroll-smooth
             `}
-            // Use style for critical CSS props that Tailwind doesn't handle natively
             style={isMobile ? {} : { scrollSnapType: 'x mandatory' }}
         >
-            {PAGES.map((Component, index) => (
-                <div 
-                    key={index}
-                    // 💡 Added a common class for all page sections
-                    className={`page-section ${isMobile ? 'w-full h-auto' : 'min-w-full h-full'}`}
-                    style={isMobile ? {} : { scrollSnapAlign: 'start' }}
-                >
-                    {/* ✅ ALL COMPONENTS ARE NOW MOUNTED SIMULTANEOUSLY */}
-                    <Component />
-                </div>
-            ))}
+            {PAGES.map((page, index) => {
+                const Component = page.component;
+                return (
+                    <div 
+                        key={index}
+                        // Important: Add indexed class for ScrollTrigger targeting
+                        className={`page-section page-section-${index} ${isMobile ? 'w-full h-auto' : 'min-w-full h-full'}`}
+                        style={isMobile ? {} : { scrollSnapAlign: 'start' }}
+                    >
+                        <Component />
+                    </div>
+                );
+            })}
         </div>
     );
 }
-
