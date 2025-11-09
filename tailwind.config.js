@@ -18,6 +18,9 @@ export default {
       colors: {
         primary : "#f25d2c",
         dark:"#0f3357"
+      },
+      screen : {
+        lp : "1440px"
       }
     }
   },
