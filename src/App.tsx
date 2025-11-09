@@ -4,11 +4,13 @@ import { lazy } from "react";
 import { ImSpinner2 } from "react-icons/im";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { MainLayout } from './pages/MainLayout';
+import NotFound from "./pages/NotFound";
+
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Home"));
-const Services = lazy(() => import("./pages/Home"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Services = lazy(() => import("./pages/Services"));
 const Portfolio = lazy(()=> import("./pages/Portfolio")); 
 
 const SuspenseLayout = () => (
@@ -31,6 +33,8 @@ function App() {
             <Route path="/Portfolio" element={<Portfolio/>}></Route>
           </Route>
         </Route>
+         {/* Catch-all route for 404 */}
+          <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
 
