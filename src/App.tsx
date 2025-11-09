@@ -7,12 +7,12 @@ import { MainLayout } from './pages/MainLayout';
 import NotFound from "./pages/NotFound";
 
 
-const Home = lazy(() => import("./pages/Home"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Services = lazy(() => import("./pages/Services"));
-const Portfolio = lazy(()=> import("./pages/Portfolio")); 
-
+// const Home = lazy(() => import("./pages/Home"));
+// const About = lazy(() => import("./pages/About"));
+// const Contact = lazy(() => import("./pages/Contact"));
+// const Services = lazy(() => import("./pages/Services"));
+// const Portfolio = lazy(()=> import("./pages/Portfolio")); 
+const OneHome = lazy(() => import("./pages/OneHome"));
 const SuspenseLayout = () => (
   <Suspense fallback={<ImSpinner2 />}>
     <Outlet />
@@ -26,11 +26,26 @@ function App() {
       <Routes>
         <Route element={<MainLayout/>}>
           <Route element={<SuspenseLayout/>}>
-            <Route path="/" element={<Home/>}/>
+            {/* <Route path="/" element={<Home/>}/> */}
+
+            {/* Routing when pages where not on horizontalScroll and GSAP was not introduced */}
+            {/* <Route path="/" element={<OneHome/>}/>
+            <Route path="/Home" element={<OneHome/>}/>
             <Route path="/AboutUs" element={<About/>}/>
             <Route path="/Contact" element={<Contact/>}/>
             <Route path="/Services" element={<Services/>}/>
-            <Route path="/Portfolio" element={<Portfolio/>}></Route>
+            <Route path="/Portfolio" element={<Portfolio/>}></Route> */}
+
+              {/* After GSAP routing */}
+            <Route path="/" element={<OneHome/>}/>
+            <Route path="/Home" element={<OneHome/>}/>
+            <Route path="/AboutTeam" element={<OneHome/>}/>
+            <Route path="/AboutUs" element={<OneHome/>}/>
+            <Route path="/Contact" element={<OneHome/>}/>
+            <Route path="/Services" element={<OneHome/>}/>
+            <Route path="/Portfolio" element={<OneHome/>}></Route>
+
+            
           </Route>
         </Route>
          {/* Catch-all route for 404 */}

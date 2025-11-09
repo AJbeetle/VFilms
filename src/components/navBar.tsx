@@ -25,11 +25,11 @@ const navItem : navItemType[] = [
     },
     {
         text : "Our Stories",
-        url : "/AboutUs",
+        url : "/AboutTeam",
     },
     {
         text :  "Varnan",
-        url : "/",
+        url : "/Home",
     },
     {
         text : "Let's Talk",
@@ -46,7 +46,7 @@ export const NavBar = (props : NavBarPropsType ) => {
 
     return (
         <div className={`${props.className} bg-white w-full bg-opacity-35 py-5 px-6 flex items-end justify-between gap-2 transition-all duration-1000 z-10`}>
-            <div className="py-1 hover:cursor-pointer active:scale-95" onClick={()=>navigate("/")}>
+            <div className="py-1 hover:cursor-pointer active:scale-95" onClick={()=>navigate("/Home")}>
                 <img src={"/logo.svg"} className="w-20 h-6"></img>
             </div>
              

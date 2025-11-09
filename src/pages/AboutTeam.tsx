@@ -1,9 +1,43 @@
 import { useNavigate } from "react-router-dom";
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger" 
+
+// Ensure registration is done here as well, just in case
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
+
 
 export function AboutTeam(){
+
+     // 💡 Add a useGSAP block to ensure this page participates in the scroll timeline
+    useGSAP(() => {
+        
+        const triggerElement = document.querySelector('.aboutTeam-page-container');
+        const scrollerClass = ".main-horizontal-scroller"; 
+        
+        // This timeline doesn't do any animations, it just defines the scroll zone for this page
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: triggerElement, 
+                horizontal: true, 
+                scroller: scrollerClass, 
+                
+                // Define the range of the HomePage.
+                start: "left right", 
+                end: "right left", 
+                
+                scrub: true, 
+                // markers: true,
+            }
+        });
+
+    }, []);
+
     const navigate = useNavigate();
     return(
-        <div className="flex w-screen h-screen justify-end">
+        <div className="flex w-screen h-screen justify-end aboutTeam-page-container">
             <div className="relative w-[30%] flex-col">
                 <img src="/pinPaper.svg" className="w-[30rem] absolute -right-[15%] top-0"></img>
                 <img src="/IGate.svg" className="w-[20rem] absolute left-0 bottom-10"></img>
